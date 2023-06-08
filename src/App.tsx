@@ -1,15 +1,18 @@
 import { Image } from "./features/Image/Image";
+import { AppContextProvider } from "./features/appContextProvider/AppContextProvider";
 import { Part } from "./types/Part";
 
 const App: React.FC = () => {
   return (
-    <>
+    <AppContextProvider gridWidth={20} gridHeight={20}>
       <Image
-        config={{ designMode: true, gridSize: { width: 20, height: 20 } }}
+        config={{
+          designMode: true,
+        }}
         options={Part}
         onSelect={() => {}}
       />
-    </>
+    </AppContextProvider>
   );
 };
 

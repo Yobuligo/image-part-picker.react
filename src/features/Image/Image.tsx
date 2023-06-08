@@ -1,4 +1,6 @@
+import { useContext } from "react";
 import image from "../../assets/person.png";
+import { AppContext } from "../../context/AppContext";
 import { EnumType } from "../../types/EnumType";
 import { repeat } from "../../utils/repeat";
 import { style } from "../../utils/style";
@@ -8,8 +10,10 @@ import { IImageProps } from "./IImageProps";
 import styles from "./Image.module.css";
 
 export function Image<T extends EnumType>(props: IImageProps<T>) {
+  const context = useContext(AppContext);
+
   const items = () =>
-    repeat(props.config.gridSize.height, (index) => (
+    repeat(context.gridHeight.value, (index) => (
       <Column key={index} config={props.config} y={index} />
     ));
 
