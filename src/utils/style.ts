@@ -1,3 +1,3 @@
-export const style = (...styles: string[]): string=>{
-    return styles.join()
-}
+export const style = (...styles: (string | undefined | false)[]): string => {
+  return styles.join(" ");
+};

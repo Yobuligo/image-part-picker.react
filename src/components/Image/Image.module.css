@@ -14,8 +14,11 @@
   left: 0;
   width: 100%;
   height: 100%;
-  border-bottom: 1px solid green;
-  border-right: 1px solid green;
   display: flex;
   flex-direction: column;
+}
+
+.imageComponentBorder {
+  border-bottom: 1px solid green;
+  border-right: 1px solid green;
 }

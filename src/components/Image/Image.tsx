@@ -1,5 +1,6 @@
 import image from "../../assets/person.png";
 import { repeat } from "../../utils/repeat";
+import { style } from "../../utils/style";
 import { Column } from "../column/Column";
 import { IImageProps } from "./IImageProps";
 import styles from "./Image.module.css";
@@ -13,7 +14,14 @@ export const Image: React.FC<IImageProps> = (props) => {
   return (
     <div className={styles.image}>
       <img src={image} alt="Person" />
-      <div className={styles.imageComponent}>{items()}</div>
+      <div
+        className={style(
+          styles.imageComponent,
+          props.config.devMode && styles.imageComponentBorder
+        )}
+      >
+        {items()}
+      </div>
     </div>
   );
 };

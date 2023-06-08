@@ -1,4 +1,5 @@
 import { useToggle } from "../../hooks/useToggle";
+import { style } from "../../utils/style";
 import styles from "./Element.module.css";
 import { IElement } from "./IElement";
 
@@ -7,9 +8,13 @@ export const Element: React.FC<IElement> = (props) => {
   const styleProps = {
     width: `${100 / props.config.size.x}%`,
   };
+
   return (
     <div
-      className={`${styles.element} ${highlighted ? styles.highlighted : ""}`}
+      className={`${
+        props.config.devMode &&
+        style(styles.element, highlighted && styles.highlighted)
+      }`}
       style={styleProps}
       onClick={() => {
         toggleHighlighted();
