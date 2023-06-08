@@ -1,13 +1,13 @@
 import image from "../../assets/person.png";
-import { ISize } from "../../types/ISize";
 import { repeat } from "../../utils/repeat";
 import { Column } from "../column/Column";
+import { IImageProps } from "./IImageProps";
 import styles from "./Image.module.css";
 
-export const Image: React.FC<{ size: ISize }> = (props) => {
+export const Image: React.FC<IImageProps> = (props) => {
   const items = () =>
-    repeat(props.size.y, (index) => (
-      <Column key={index} size={props.size} y={index} />
+    repeat(props.config.size.y, (index) => (
+      <Column key={index} config={props.config} y={index} />
     ));
 
   return (

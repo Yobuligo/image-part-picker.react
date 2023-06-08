@@ -1,16 +1,21 @@
-import { ISize } from "../../types/ISize";
 import { repeat } from "../../utils/repeat";
 import { Element } from "../element/Element";
 import styles from "./Column.module.css";
+import { IColumnProps } from "./IColumnProps";
 
-export const Column: React.FC<{ size: ISize; y: number }> = (props) => {
+export const Column: React.FC<IColumnProps> = (props) => {
   const styleProps = {
-    height: `${100 / props.size.y}%`,
+    height: `${100 / props.config.size.y}%`,
   };
 
   const items = () =>
-    repeat(props.size.x, (index) => (
-      <Element key={`${index},${props.y}`} size={props.size} x={index} y={props.y} />
+    repeat(props.config.size.x, (index) => (
+      <Element
+        key={`${index},${props.y}`}
+        config={props.config}
+        x={index}
+        y={props.y}
+      />
     ));
 
   return (

@@ -1,13 +1,11 @@
 import { useToggle } from "../../hooks/useToggle";
-import { ISize } from "../../types/ISize";
 import styles from "./Element.module.css";
+import { IElement } from "./IElement";
 
-export const Element: React.FC<{ size: ISize; x: number; y: number }> = (
-  props
-) => {
+export const Element: React.FC<IElement> = (props) => {
   const [highlighted, toggleHighlighted] = useToggle(false);
   const styleProps = {
-    width: `${100 / props.size.x}%`,
+    width: `${100 / props.config.size.x}%`,
   };
   return (
     <div
