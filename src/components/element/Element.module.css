@@ -1,0 +1,8 @@
+.element {
+  border-top: 1px solid green;
+  border-left: 1px solid green;
+}
+
+.highlighted{
+  background-color: rgba(0, 128, 0, 0.4);
+}
