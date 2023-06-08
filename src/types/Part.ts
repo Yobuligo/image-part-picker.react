@@ -1,7 +1,7 @@
 export enum Part {
-  ARMS,
-  BODY,
-  CHEST,
-  HEAD,
-  LEGS,
+  Arms = 1,
+  Body = 2,
+  Chest = 3,
+  Head = 4,
+  Legs = 5,
 }

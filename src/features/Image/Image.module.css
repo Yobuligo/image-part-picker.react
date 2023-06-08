@@ -22,3 +22,8 @@
   border-bottom: 1px solid green;
   border-right: 1px solid green;
 }
+
+.imageFrame {
+  display: flex;
+  flex-direction: row;
+}
