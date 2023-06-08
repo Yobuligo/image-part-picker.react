@@ -1,4 +1,4 @@
-import { Image } from "./components/Image/Image";
+import { Image } from "./features/Image/Image";
 
 const App: React.FC = () => {
   return (
