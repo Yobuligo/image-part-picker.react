@@ -5,11 +5,11 @@ import { IColumnProps } from "./IColumnProps";
 
 export const Column: React.FC<IColumnProps> = (props) => {
   const styleProps = {
-    height: `${100 / props.config.size.y}%`,
+    height: `${100 / props.config.gridSize.height}%`,
   };
 
   const items = () =>
-    repeat(props.config.size.x, (index) => (
+    repeat(props.config.gridSize.width, (index) => (
       <Element
         key={`${index},${props.y}`}
         config={props.config}

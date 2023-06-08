@@ -1,6 +1,6 @@
-import { ISize } from "./ISize";
+import { IGridSize } from "./IGridSize";
 
 export interface IConfig {
-  devMode?: boolean;
-  size: ISize;
+  designMode?: boolean;
+  gridSize: IGridSize;
 }

@@ -7,7 +7,7 @@ import styles from "./Image.module.css";
 
 export const Image: React.FC<IImageProps> = (props) => {
   const items = () =>
-    repeat(props.config.size.y, (index) => (
+    repeat(props.config.gridSize.height, (index) => (
       <Column key={index} config={props.config} y={index} />
     ));
 
@@ -17,7 +17,7 @@ export const Image: React.FC<IImageProps> = (props) => {
       <div
         className={style(
           styles.imageComponent,
-          props.config.devMode && styles.imageComponentBorder
+          props.config.designMode && styles.imageComponentBorder
         )}
       >
         {items()}

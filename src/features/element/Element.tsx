@@ -6,13 +6,13 @@ import { IElement } from "./IElement";
 export const Element: React.FC<IElement> = (props) => {
   const [highlighted, toggleHighlighted] = useToggle(false);
   const styleProps = {
-    width: `${100 / props.config.size.x}%`,
+    width: `${100 / props.config.gridSize.width}%`,
   };
 
   return (
     <div
       className={`${
-        props.config.devMode &&
+        props.config.designMode &&
         style(styles.element, highlighted && styles.highlighted)
       }`}
       style={styleProps}
