@@ -2,7 +2,6 @@ import { Image } from "./features/Image/Image";
 import { AppContextProvider } from "./features/appContextProvider/AppContextProvider";
 import { ICoordinate } from "./types/ICoordinate";
 import { Part } from "./types/Part";
-import { Enum } from "./utils/Enum";
 
 const App: React.FC = () => {
   const gridData: Map<Part, ICoordinate[]> = new Map();
@@ -25,7 +24,7 @@ const App: React.FC = () => {
     <AppContextProvider gridWidth={20} gridHeight={20}>
       <Image
         config={{
-          designMode: false,
+          designMode: true,
         }}
         options={Part}
         gridData={gridData}
