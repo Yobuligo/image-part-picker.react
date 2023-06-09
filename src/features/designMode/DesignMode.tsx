@@ -28,8 +28,12 @@ export function DesignMode<T extends EnumType>(props: IDesignModeProps<T>) {
   const onChangeGridHeight = (newValue: string) =>
     context.gridHeight.setValue(+newValue);
 
-  const onActivate: ElementChangeObserver = (coordinate) =>
+  const onActivate: ElementChangeObserver = (coordinate) => {
     props.coordinateTracker.add(selectedPart, coordinate);
+    console.log(
+      `Element (${coordinate.x},${coordinate.y}) was added to '${selectedPart}'`
+    );
+  };
 
   const onDeactivate: ElementChangeObserver = (coordinate) =>
     props.coordinateTracker.remove(coordinate);
@@ -37,8 +41,9 @@ export function DesignMode<T extends EnumType>(props: IDesignModeProps<T>) {
   props.refOnActivate(onActivate);
   props.refOnDeactivate(onDeactivate);
 
-  const onSelectPart = (event: React.ChangeEvent<HTMLSelectElement>) =>
+  const onSelectPart = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedPart(event.target.value as T[keyof T]);
+  };
 
   return (
     <div className={styles.designMode}>

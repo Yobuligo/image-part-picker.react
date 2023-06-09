@@ -1,4 +1,4 @@
-import { useContext, useMemo } from "react";
+import { useContext, useEffect, useMemo } from "react";
 import image from "../../assets/person.png";
 import { AppContext } from "../../context/AppContext";
 import { ElementChangeObserver as ElementToggleObserver } from "../../types/ElementToggleObserver";
@@ -16,6 +16,14 @@ export function Image<T extends EnumType>(props: IImageProps<T>) {
   let onActivateObserver: ElementToggleObserver;
   let onDeactivateObserver: ElementToggleObserver;
   const coordinateTracker = useMemo(() => new CoordinateTracker<T>(), []);
+
+  useEffect(() => {
+    props.gridData.forEach((coordinates, key) =>
+      coordinates.forEach((coordinate) =>
+        coordinateTracker.add(key, coordinate)
+      )
+    );
+  }, [coordinateTracker, props.gridData]);
 
   const items = () =>
     repeat(context.gridHeight.value, (index) => (
