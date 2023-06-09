@@ -35,7 +35,7 @@ export function Image<T extends EnumType>(props: IImageProps<T>) {
           onActivateObserver?.(coordinate);
           const part = coordinateTracker.findByCoordinate(coordinate);
           if (part) {
-            props.onSelect(props.options[part]);
+            props.onSelect(part);
           }
         }}
         onDeactivate={(coordinate) => {

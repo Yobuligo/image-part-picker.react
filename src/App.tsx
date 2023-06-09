@@ -7,18 +7,18 @@ import { Enum } from "./utils/Enum";
 const App: React.FC = () => {
   const gridData: Map<Part, ICoordinate[]> = new Map();
   gridData.set(Part.Head, [
-    { x: 9, y: 1 },
-    { x: 10, y: 1 },
-    { x: 11, y: 1 },
-    { x: 12, y: 1 },
-    { x: 9, y: 2 },
-    { x: 10, y: 2 },
-    { x: 11, y: 2 },
-    { x: 12, y: 2 },
-    { x: 9, y: 3 },
-    { x: 10, y: 3 },
-    { x: 11, y: 3 },
-    { x: 12, y: 3 },
+    [9, 1],
+    [10, 1],
+    [11, 1],
+    [12, 1],
+    [9, 2],
+    [10, 2],
+    [11, 2],
+    [12, 2],
+    [9, 3],
+    [10, 3],
+    [11, 3],
+    [12, 3],
   ]);
 
   return (
@@ -32,7 +32,7 @@ const App: React.FC = () => {
         onSelect={(part) => {
           switch (part) {
             case Part.Head: {
-              console.log(`Head was ${Enum.toText(Part, Part.Head)} clicked`);
+              console.log(`Head was clicked`);
               break;
             }
 

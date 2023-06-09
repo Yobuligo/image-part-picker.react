@@ -31,7 +31,7 @@ export function DesignMode<T extends EnumType>(props: IDesignModeProps<T>) {
   const onActivate: ElementChangeObserver = (coordinate) => {
     props.coordinateTracker.add(selectedPart, coordinate);
     console.log(
-      `Element (${coordinate.x},${coordinate.y}) was added to '${selectedPart}'`
+      `Element (${coordinate[0]},${coordinate[1]}) was added to '${selectedPart}'`
     );
   };
 

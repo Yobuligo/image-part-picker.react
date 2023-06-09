@@ -16,7 +16,7 @@ export const Column: React.FC<IColumnProps> = (props) => {
       <Element
         key={`${index},${props.y}`}
         config={props.config}
-        coordinate={{ x: index, y: props.y }}
+        coordinate={[index, props.y]}
         onActivate={props.onActivate}
         onDeactivate={props.onDeactivate}
       />

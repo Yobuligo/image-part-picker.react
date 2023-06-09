@@ -1,4 +1,1 @@
-export interface ICoordinate {
-  readonly x: number;
-  readonly y: number;
-}
+export type ICoordinate = [x: number, y: number];

@@ -5,27 +5,36 @@ import { ICoordinateTracker } from "./ICoordinateTracker";
 export class CoordinateTracker<T extends EnumType>
   implements ICoordinateTracker<T>
 {
-  private coordinates = new Map<ICoordinate, T[keyof T]>();
+  private coordinates = new Map<string, T[keyof T]>();
 
   add(part: T[keyof T], coordinate: ICoordinate): void {
-    this.coordinates.set(coordinate, part);
+    this.coordinates.set(this.fromCoordinate(coordinate), part);
   }
 
   findByPart(part: T[keyof T]): ICoordinate[] {
     const coordinates: ICoordinate[] = [];
     this.coordinates.forEach((value, coordinate) => {
       if (value === part) {
-        coordinates.push(coordinate);
+        coordinates.push(this.toCoordinate(coordinate));
       }
     });
     return coordinates;
   }
 
   findByCoordinate(coordinate: ICoordinate): T[keyof T] | undefined {
-    return this.coordinates.get(coordinate);
+    return this.coordinates.get(this.fromCoordinate(coordinate));
   }
 
   remove(coordinate: ICoordinate): void {
-    this.coordinates.delete(coordinate);
+    this.coordinates.delete(this.fromCoordinate(coordinate));
+  }
+
+  private fromCoordinate(coordinate: ICoordinate): string {
+    return `${coordinate[0]},${coordinate[1]}`;
+  }
+
+  private toCoordinate(coordinate: string): ICoordinate {
+    const values = coordinate.split(",");
+    return [+values.at(0)!, +values.at(1)!];
   }
 }
