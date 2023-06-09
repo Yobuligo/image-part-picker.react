@@ -1,3 +1,3 @@
 export interface IConfig {
-  designMode?: boolean;
+  readonly designMode?: boolean;
 }

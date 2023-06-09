@@ -1,16 +1,24 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { AppContext } from "../../context/AppContext";
 import { useToggle } from "../../hooks/useToggle";
 import { style } from "../../utils/style";
 import styles from "./Element.module.css";
-import { IElement } from "./IElement";
+import { IElementProps } from "./IElementProps";
 
-export const Element: React.FC<IElement> = (props) => {
+export const Element: React.FC<IElementProps> = (props) => {
   const [highlighted, toggleHighlighted] = useToggle(false);
   const context = useContext(AppContext);
   const styleProps = {
     width: `${100 / context.gridWidth.value}%`,
   };
+
+  useEffect(() => {
+    if (highlighted) {
+      props.onActivate?.(props.coordinate);
+    } else {
+      props.onDeactivate?.(props.coordinate);
+    }
+  }, [highlighted, props]);
 
   return (
     <div
@@ -21,7 +29,11 @@ export const Element: React.FC<IElement> = (props) => {
       style={styleProps}
       onClick={() => {
         toggleHighlighted();
-        console.log(`Element (${props.x + 1}, ${props.y + 1}) was clicked`);
+        console.log(
+          `Element (${props.coordinate.x + 1}, ${
+            props.coordinate.y + 1
+          }) was clicked`
+        );
       }}
     ></div>
   );

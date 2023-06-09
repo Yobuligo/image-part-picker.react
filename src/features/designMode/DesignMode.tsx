@@ -25,8 +25,8 @@ export function DesignMode<T extends EnumType>(props: IDesignModeProps<T>) {
   const onChangeGridWidth = (newValue: string) =>
     context.gridWidth.setValue(+newValue);
 
-  const onChangeGridHeight = (event: React.ChangeEvent<HTMLInputElement>) =>
-    context.gridHeight.setValue(+event.target.value);
+  const onChangeGridHeight = (newValue: string) =>
+    context.gridHeight.setValue(+newValue);
 
   return (
     <div className={styles.designMode}>
@@ -36,14 +36,11 @@ export function DesignMode<T extends EnumType>(props: IDesignModeProps<T>) {
         value={context.gridWidth.value}
         onValueChanged={onChangeGridWidth}
       />
-      <div>
-        <label htmlFor={heightId}>Grid Height</label>
-      </div>
-      <input
-        id={heightId}
+      <LabeledInput
+        label="Grid Height"
         type="number"
         value={context.gridHeight.value}
-        onChange={onChangeGridHeight}
+        onValueChanged={onChangeGridHeight}
       />
       <div>
         <label htmlFor={partId}>Part</label>

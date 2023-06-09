@@ -16,8 +16,7 @@ export const Column: React.FC<IColumnProps> = (props) => {
       <Element
         key={`${index},${props.y}`}
         config={props.config}
-        x={index}
-        y={props.y}
+        coordinate={{ x: index, y: props.y }}
       />
     ));
 
