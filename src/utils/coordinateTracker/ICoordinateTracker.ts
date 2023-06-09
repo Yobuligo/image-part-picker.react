@@ -2,7 +2,8 @@ import { EnumType } from "../../types/EnumType";
 import { ICoordinate } from "../../types/ICoordinate";
 
 export interface ICoordinateTracker<T extends EnumType> {
-  add<K extends keyof T>(part: K, coordinate: ICoordinate): void;
-  findByPart<K extends keyof T>(part: K): ICoordinate[];
+  add(part: T[keyof T], coordinate: ICoordinate): void;
+  findByPart(part: T[keyof T]): ICoordinate[];
+  findByCoordinate(coordinate: ICoordinate): T[keyof T] | undefined;
   remove(coordinate: ICoordinate): void;
 }

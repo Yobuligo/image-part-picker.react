@@ -1,10 +1,10 @@
 import { EnumType } from "../types/EnumType";
 
 class EnumDefault {
-  first<T extends EnumType, K extends keyof T>(enumType: T): K {
+  first<T extends EnumType>(enumType: T): T[keyof T] {
     for (let key in enumType) {
       if (!parseInt(key)) {
-        return key as unknown as K;
+        return key as T[keyof T];
       }
     }
     throw new Error("Enum contains now values");
@@ -18,6 +18,10 @@ class EnumDefault {
       }
     }
     return keys;
+  }
+
+  toText<T extends EnumType>(enumType: T, key: T[keyof T]): T[keyof T] {
+    return enumType[key];
   }
 }
 
