@@ -17,6 +17,8 @@ export const Column: React.FC<IColumnProps> = (props) => {
         key={`${index},${props.y}`}
         config={props.config}
         coordinate={{ x: index, y: props.y }}
+        onActivate={props.onActivate}
+        onDeactivate={props.onDeactivate}
       />
     ));
 

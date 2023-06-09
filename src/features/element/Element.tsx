@@ -29,11 +29,6 @@ export const Element: React.FC<IElementProps> = (props) => {
       style={styleProps}
       onClick={() => {
         toggleHighlighted();
-        console.log(
-          `Element (${props.coordinate.x + 1}, ${
-            props.coordinate.y + 1
-          }) was clicked`
-        );
       }}
     ></div>
   );

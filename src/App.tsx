@@ -9,7 +9,7 @@ const App: React.FC = () => {
         config={{
           designMode: true,
         }}
-        options={Part}
+        options={Part}        
         onSelect={() => {}}
       />
     </AppContextProvider>
