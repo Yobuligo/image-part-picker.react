@@ -1,25 +1,25 @@
-import { ReactNode, useContext, useId } from "react";
-import { LabeledInput } from "../../components/labeledInput/LabeledInput";
+import { useContext, useId, useState } from "react";
+import { LabeledInput } from "../../components/LabeledInput";
 import { AppContext } from "../../context/AppContext";
 import { ElementChangeObserver } from "../../types/ElementToggleObserver";
 import { EnumType } from "../../types/EnumType";
+import { Enum } from "../../utils/Enum";
 import styles from "./DesignMode.module.css";
 import { IDesignModeProps } from "./IDesignModeProps";
 
 export function DesignMode<T extends EnumType>(props: IDesignModeProps<T>) {
   const partId = useId();
   const partListId = useId();
+
+  const [selectedPart, setSelectedPart] = useState<keyof T>(
+    Enum.first(props.options)
+  );
   const context = useContext(AppContext);
 
-  const items = () => {
-    const children: ReactNode[] = [];
-    for (let key in props.options) {
-      if (!parseInt(key)) {
-        children.push(<option key={key} value={key} />);
-      }
-    }
-    return children;
-  };
+  const items = () =>
+    Enum.keys(props.options).map((option) => (
+      <option key={option.toString()} value={option.toString()} />
+    ));
 
   const onChangeGridWidth = (newValue: string) =>
     context.gridWidth.setValue(+newValue);
@@ -38,6 +38,9 @@ export function DesignMode<T extends EnumType>(props: IDesignModeProps<T>) {
   props.refOnActivate(onActivate);
   props.refOnDeactivate(onDeactivate);
 
+  const onSelectPart = (event: React.ChangeEvent<HTMLInputElement>) =>
+    setSelectedPart(event.target.value);
+
   return (
     <div className={styles.designMode}>
       <LabeledInput
@@ -55,7 +58,13 @@ export function DesignMode<T extends EnumType>(props: IDesignModeProps<T>) {
       <div>
         <label htmlFor={partId}>Part</label>
       </div>
-      <input id={partId} type="" list={partListId} />
+      <input
+        id={partId}
+        type=""
+        list={partListId}
+        value={selectedPart?.toString()}
+        onChange={onSelectPart}
+      />
       <datalist id={partListId}>{items()}</datalist>
     </div>
   );
