@@ -1,4 +1,5 @@
 import { ReactNode, useContext, useId } from "react";
+import { LabeledInput } from "../../components/labeledInput/LabeledInput";
 import { AppContext } from "../../context/AppContext";
 import { EnumType } from "../../types/EnumType";
 import styles from "./DesignMode.module.css";
@@ -21,22 +22,19 @@ export function DesignMode<T extends EnumType>(props: IDesignModeProps<T>) {
     return children;
   };
 
-  const onChangeGridWidth = (event: React.ChangeEvent<HTMLInputElement>) =>
-    context.gridWidth.setValue(+event.target.value);
+  const onChangeGridWidth = (newValue: string) =>
+    context.gridWidth.setValue(+newValue);
 
   const onChangeGridHeight = (event: React.ChangeEvent<HTMLInputElement>) =>
     context.gridHeight.setValue(+event.target.value);
 
   return (
     <div className={styles.designMode}>
-      <div>
-        <label htmlFor={widthId}>Grid Width</label>
-      </div>
-      <input
-        id={widthId}
+      <LabeledInput
+        label="Grid With"
         type="number"
         value={context.gridWidth.value}
-        onChange={onChangeGridWidth}
+        onValueChanged={onChangeGridWidth}
       />
       <div>
         <label htmlFor={heightId}>Grid Height</label>
