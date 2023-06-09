@@ -1,4 +1,4 @@
-import { useContext, useId, useState } from "react";
+import { useContext, useId, useMemo, useState } from "react";
 import { LabeledInput } from "../../components/LabeledInput";
 import { AppContext } from "../../context/AppContext";
 import { ElementChangeObserver } from "../../types/ElementToggleObserver";
@@ -9,16 +9,18 @@ import { IDesignModeProps } from "./IDesignModeProps";
 
 export function DesignMode<T extends EnumType>(props: IDesignModeProps<T>) {
   const partId = useId();
-  const partListId = useId();
   const [selectedPart, setSelectedPart] = useState<T[keyof T]>(
     Enum.first(props.options)
   );
   const context = useContext(AppContext);
 
-  const items = () =>
-    Enum.keys(props.options).map((option) => (
-      <option key={option.toString()} value={option.toString()} />
-    ));
+  const items = useMemo(
+    () =>
+      Enum.keys(props.options).map((option) => (
+        <option key={option.toString()}>{option.toString()}</option>
+      )),
+    [props.options]
+  );
 
   const onChangeGridWidth = (newValue: string) =>
     context.gridWidth.setValue(+newValue);
@@ -35,7 +37,7 @@ export function DesignMode<T extends EnumType>(props: IDesignModeProps<T>) {
   props.refOnActivate(onActivate);
   props.refOnDeactivate(onDeactivate);
 
-  const onSelectPart = (event: React.ChangeEvent<HTMLInputElement>) =>
+  const onSelectPart = (event: React.ChangeEvent<HTMLSelectElement>) =>
     setSelectedPart(event.target.value as T[keyof T]);
 
   return (
@@ -55,14 +57,9 @@ export function DesignMode<T extends EnumType>(props: IDesignModeProps<T>) {
       <div>
         <label htmlFor={partId}>Part</label>
       </div>
-      <input
-        id={partId}
-        type=""
-        list={partListId}
-        value={selectedPart?.toString()}
-        onChange={onSelectPart}
-      />
-      <datalist id={partListId}>{items()}</datalist>
+      <select name={partId} id={partId} onChange={onSelectPart}>
+        {items}
+      </select>
     </div>
   );
 }

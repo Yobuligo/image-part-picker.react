@@ -1,3 +1,11 @@
 .designMode {
   padding: 1rem;
 }
+
+.designMode Input {
+  width: 10rem;
+}
+
+.designMode select {
+  width: 10rem;
+}
