@@ -62,9 +62,18 @@ export const useGrid = <T>(
     [width, height]
   );
 
+  const setByCoordinates = (coordinates: ICoordinate[], value: T) => {
+    setData((previous) => {
+      coordinates.forEach((coordinate) => {
+        previous[coordinate.x][coordinate.y] = value;
+      });
+      return [...previous];
+    });
+  };
+
   useEffect(() => {
     setAll(initialValue);
   }, [initialValue, setAll]);
 
-  return { find, set, setAll };
+  return { find, set, setAll, setByCoordinates };
 };

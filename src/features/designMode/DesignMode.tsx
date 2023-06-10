@@ -38,8 +38,11 @@ export function DesignMode<T extends EnumType>(props: IDesignModeProps<T>) {
   props.refOnDeactivate(onDeactivate);
 
   const onSelectPart = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setSelectedPart(event.target.value as T[keyof T]);
+    const newSelectedPart = event.target.value as T[keyof T];
+    setSelectedPart(newSelectedPart);
+    const coordinates = props.coordinateTracker.findByPart(newSelectedPart);
     context.grid.setAll(false);
+    context.grid.setByCoordinates(coordinates, true);
   };
 
   return (

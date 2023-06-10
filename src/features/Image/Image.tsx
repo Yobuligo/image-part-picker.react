@@ -32,10 +32,13 @@ export function Image<T extends EnumType>(props: IImageProps<T>) {
         config={props.config}
         y={index}
         onActivate={(coordinate) => {
-          onActivateObserver?.(coordinate);
-          const part = coordinateTracker.findByCoordinate(coordinate);
-          if (part) {
-            props.onSelect(part);
+          if (props.config.designMode) {
+            onActivateObserver?.(coordinate);
+          } else {
+            const part = coordinateTracker.findByCoordinate(coordinate);
+            if (part) {
+              props.onSelect(part);
+            }
           }
         }}
         onDeactivate={(coordinate) => {
