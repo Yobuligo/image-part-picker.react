@@ -1,24 +1,18 @@
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { AppContext } from "../../context/AppContext";
-import { useToggle } from "../../hooks/useToggle";
 import { style } from "../../utils/style";
 import styles from "./Element.module.css";
 import { IElementProps } from "./IElementProps";
 
 export const Element: React.FC<IElementProps> = (props) => {
-  const [highlighted, toggleHighlighted] = useToggle(false);
   const context = useContext(AppContext);
+  const highlighted = context.grid.find(
+    props.coordinate[0],
+    props.coordinate[1]
+  );
   const styleProps = {
     width: `${100 / context.gridWidth.value}%`,
   };
-
-  useEffect(() => {
-    if (highlighted) {
-      props.onActivate?.(props.coordinate);
-    } else {
-      props.onDeactivate?.(props.coordinate);
-    }
-  }, [highlighted, props]);
 
   return (
     <div
@@ -28,7 +22,18 @@ export const Element: React.FC<IElementProps> = (props) => {
       }`}
       style={styleProps}
       onClick={() => {
-        toggleHighlighted();
+        context.grid.set(
+          props.coordinate[0],
+          props.coordinate[1],
+          (previous) => {
+            if (!previous) {
+              props.onActivate?.(props.coordinate);
+            } else {
+              props.onDeactivate?.(props.coordinate);
+            }
+            return !previous;
+          }
+        );
       }}
     ></div>
   );

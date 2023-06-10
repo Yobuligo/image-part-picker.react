@@ -10,28 +10,38 @@ export const useGrid = <T>(
 ): IGrid<T> => {
   const [data, setData] = useState<Row<T>[]>([]);
 
-  const find = (x: number, y: number): T | undefined => {
-    return data[x][y];
-  };
+  const find = useCallback(
+    (x: number, y: number): T | undefined => data?.[x]?.[y],
+    [data]
+  );
 
-  const set = (x: number, y: number, value: T) => {
-    if (x < 0 || x > width) {
-      throw new Error(
-        `Error when setting value. X coordinate is out of bounce. X must be between '0' and '${width}'`
-      );
-    }
+  const setValue = useCallback(
+    (x: number, y: number, value: T) => {
+      if (x < 0 || x > width) {
+        throw new Error(
+          `Error when setting value. X coordinate is out of bounce. X must be between '0' and '${width}'`
+        );
+      }
 
-    if (y < 0 || y > height) {
-      throw new Error(
-        `Error when setting value. Y coordinate is out of bounce. Y must be between '0' and '${height}'`
-      );
-    }
+      if (y < 0 || y > height) {
+        throw new Error(
+          `Error when setting value. Y coordinate is out of bounce. Y must be between '0' and '${height}'`
+        );
+      }
 
-    setData((previous) => {
-      previous[x][y] = value;
-      return previous;
-    });
-  };
+      setData((previous) => {
+        previous[x][y] = value;
+        return [...previous];
+      });
+    },
+    [width, height]
+  );
+
+  const set = useCallback(
+    (x: number, y: number, setter: (previous: T | undefined) => T) =>
+      setValue(x, y, setter(find(x, y))),
+    [find, setValue]
+  );
 
   const setAll = useCallback(
     (value: T) => {

@@ -7,7 +7,7 @@ export const AppContextProvider: React.FC<IAppContextProviderProps> = (
   props
 ) => {
   const gridWidth = useValue(props.gridWidth);
-  const gridHeight = useValue(props.gridWidth);
+  const gridHeight = useValue(props.gridHeight);
 
   return (
     <AppContext.Provider
