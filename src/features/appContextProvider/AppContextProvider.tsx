@@ -10,6 +10,7 @@ export const AppContextProvider: React.FC<IAppContextProviderProps> = (
       value={{
         gridWidth: useValue(props.gridWidth),
         gridHeight: useValue(props.gridHeight),
+        grid: useValue([]),
       }}
     >
       {props.children}

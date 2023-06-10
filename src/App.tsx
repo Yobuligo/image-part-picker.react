@@ -18,13 +18,17 @@ const App: React.FC = () => {
     [10, 3],
     [11, 3],
     [12, 3],
+    [9, 4],
+    [10, 4],
+    [11, 4],
+    [12, 4],
   ]);
 
   return (
     <AppContextProvider gridWidth={20} gridHeight={20}>
       <Image
         config={{
-          designMode: true,
+          designMode: false,
         }}
         options={Part}
         gridData={gridData}

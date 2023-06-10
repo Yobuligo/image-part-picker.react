@@ -7,6 +7,7 @@ import { IColumnProps } from "./IColumnProps";
 
 export const Column: React.FC<IColumnProps> = (props) => {
   const context = useContext(AppContext);
+
   const styleProps = {
     height: `${100 / context.gridHeight.value}%`,
   };
