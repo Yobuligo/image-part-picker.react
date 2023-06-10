@@ -1,8 +1,9 @@
 import { useCallback, useEffect, useState } from "react";
+import { IGrid } from "../types/IGrid";
 
 type Row<T> = (T | undefined)[];
 
-export const useGrid = <T>(width: number, height: number) => {
+export const useGrid = <T>(width: number, height: number): IGrid<T> => {
   const [data, setData] = useState<Row<T>[]>([]);
 
   const find = (x: number, y: number): T | undefined => {
@@ -35,7 +36,7 @@ export const useGrid = <T>(width: number, height: number) => {
         `Error when setting value. Y coordinate is out of bounce. Y must be between '0' and '${height}'`
       );
     }
-    
+
     setData((previous) => {
       previous[x][y] = value;
       return previous;
@@ -44,5 +45,5 @@ export const useGrid = <T>(width: number, height: number) => {
 
   useEffect(() => reset(), [reset]);
 
-  return [find, reset, set];
+  return { find, reset, set };
 };
