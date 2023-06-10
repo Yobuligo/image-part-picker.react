@@ -24,6 +24,18 @@ export const useGrid = <T>(width: number, height: number) => {
   }, [width, height]);
 
   const set = (x: number, y: number, value: T) => {
+    if (x < 0 || x > width) {
+      throw new Error(
+        `Error when setting value. X coordinate is out of bounce. X must be between '0' and '${width}'`
+      );
+    }
+
+    if (y < 0 || y > height) {
+      throw new Error(
+        `Error when setting value. Y coordinate is out of bounce. Y must be between '0' and '${height}'`
+      );
+    }
+    
     setData((previous) => {
       previous[x][y] = value;
       return previous;
