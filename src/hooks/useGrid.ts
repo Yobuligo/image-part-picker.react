@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
+import { ICoordinate } from "../types/ICoordinate";
 import { IGrid } from "../types/IGrid";
 
 type Row<T> = (T | undefined)[];
@@ -11,26 +12,27 @@ export const useGrid = <T>(
   const [data, setData] = useState<Row<T>[]>([]);
 
   const find = useCallback(
-    (x: number, y: number): T | undefined => data?.[x]?.[y],
+    (coordinate: ICoordinate): T | undefined =>
+      data?.[coordinate.x]?.[coordinate.y],
     [data]
   );
 
   const setValue = useCallback(
-    (x: number, y: number, value: T) => {
-      if (x < 0 || x > width) {
+    (coordinate: ICoordinate, value: T) => {
+      if (coordinate.x < 0 || coordinate.x > width) {
         throw new Error(
           `Error when setting value. X coordinate is out of bounce. X must be between '0' and '${width}'`
         );
       }
 
-      if (y < 0 || y > height) {
+      if (coordinate.y < 0 || coordinate.y > height) {
         throw new Error(
           `Error when setting value. Y coordinate is out of bounce. Y must be between '0' and '${height}'`
         );
       }
 
       setData((previous) => {
-        previous[x][y] = value;
+        previous[coordinate.x][coordinate.y] = value;
         return [...previous];
       });
     },
@@ -38,8 +40,8 @@ export const useGrid = <T>(
   );
 
   const set = useCallback(
-    (x: number, y: number, setter: (previous: T | undefined) => T) =>
-      setValue(x, y, setter(find(x, y))),
+    (coordinate: ICoordinate, setter: (previous: T | undefined) => T) =>
+      setValue(coordinate, setter(find(coordinate))),
     [find, setValue]
   );
 

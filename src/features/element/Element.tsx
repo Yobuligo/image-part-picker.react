@@ -6,10 +6,7 @@ import { IElementProps } from "./IElementProps";
 
 export const Element: React.FC<IElementProps> = (props) => {
   const context = useContext(AppContext);
-  const highlighted = context.grid.find(
-    props.coordinate.x,
-    props.coordinate.y
-  );
+  const highlighted = context.grid.find(props.coordinate);
   const styleProps = {
     width: `${100 / context.gridWidth.value}%`,
   };
@@ -22,18 +19,14 @@ export const Element: React.FC<IElementProps> = (props) => {
       }`}
       style={styleProps}
       onClick={() => {
-        context.grid.set(
-          props.coordinate.x,
-          props.coordinate.y,
-          (previous) => {
-            if (!previous) {
-              props.onActivate?.(props.coordinate);
-            } else {
-              props.onDeactivate?.(props.coordinate);
-            }
-            return !previous;
+        context.grid.set(props.coordinate, (previous) => {
+          if (!previous) {
+            props.onActivate?.(props.coordinate);
+          } else {
+            props.onDeactivate?.(props.coordinate);
           }
-        );
+          return !previous;
+        });
       }}
     ></div>
   );
