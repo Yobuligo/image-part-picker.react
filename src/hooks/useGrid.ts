@@ -5,10 +5,12 @@ import { IGrid } from "../types/IGrid";
 type Row<T> = (T | undefined)[];
 
 export const useGrid = <T>(
-  width: number,
-  height: number,
+  initialWidth: number,
+  initialHeight: number,
   initialValue: T
 ): IGrid<T> => {
+  const [width, setWidth] = useState(initialWidth);
+  const [height, setHeight] = useState(initialHeight);
   const [data, setData] = useState<Row<T>[]>([]);
 
   const find = useCallback(
@@ -75,5 +77,5 @@ export const useGrid = <T>(
     setAll(initialValue);
   }, [initialValue, setAll]);
 
-  return { find, set, setAll, setByCoordinates };
+  return { find, set, setAll, setByCoordinates, setWidth, setHeight };
 };

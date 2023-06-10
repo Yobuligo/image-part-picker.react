@@ -4,15 +4,15 @@ import { Part } from "./types/Part";
 
 const App: React.FC = () => {
   return (
-    <AppContextProvider gridWidth={20} gridHeight={20}>
+    <AppContextProvider>
       <Image
         config={{
           designMode: true,
         }}
-        enumType={Part}
         enumName={"Part"}
-        gridData={(data) => {
-          return data;
+        enumType={Part}
+        gridData={(grid) => {
+          return grid;
         }}
         onSelect={(part) => {
           switch (part) {

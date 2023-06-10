@@ -5,4 +5,6 @@ export interface IGrid<T> {
   set(coordinate: ICoordinate, setter: (previous: T | undefined) => T): void;
   setAll(value: T): void;
   setByCoordinates(coordinates: ICoordinate[], value: T): void;
+  setWidth(width: number): void;
+  setHeight(height: number): void;
 }
