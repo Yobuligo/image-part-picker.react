@@ -11,7 +11,7 @@ const App: React.FC = () => {
         }}
         enumName={"Part"}
         enumType={Part}
-        gridData={(grid) => {
+        gridConfig={(grid) => {
           return grid;
         }}
         onSelect={(part) => {

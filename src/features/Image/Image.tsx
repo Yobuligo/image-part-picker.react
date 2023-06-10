@@ -4,6 +4,7 @@ import { AppContext } from "../../context/AppContext";
 import { ElementChangeObserver as ElementToggleObserver } from "../../types/ElementToggleObserver";
 import { EnumType } from "../../types/EnumType";
 import { ICoordinate } from "../../types/ICoordinate";
+import { IGridConfig } from "../../types/IGridConfig";
 import { CoordinateTracker } from "../../utils/coordinateTracker/CoordinateTracker";
 import { repeat } from "../../utils/repeat";
 import { style } from "../../utils/style";
@@ -18,18 +19,23 @@ export function Image<T extends EnumType>(props: IImageProps<T>) {
   let onDeactivateObserver: ElementToggleObserver;
   const coordinateTracker = useMemo(() => new CoordinateTracker<T>(), []);
 
-  const gridData = useMemo(() => {
+  const gridConfig = useMemo(() => {
     const data: Map<T[keyof T], ICoordinate[]> = new Map();
-    return props.gridData(data);
-  }, [props]);
+    const gridConfig: IGridConfig<T> = {
+      data,
+      setWidth: context.grid.setWidth,
+      setHeight: context.grid.setHeight,
+    };
+    return props.gridConfig(gridConfig);
+  }, [context.grid.setHeight, context.grid.setWidth, props]);
 
   useEffect(() => {
-    gridData.forEach((coordinates, key) =>
+    gridConfig.data.forEach((coordinates, key) =>
       coordinates.forEach((coordinate) =>
         coordinateTracker.add(key, coordinate)
       )
     );
-  }, [coordinateTracker, gridData]);
+  }, [coordinateTracker, gridConfig]);
 
   const items = () =>
     repeat(context.gridHeight.value, (index) => (
