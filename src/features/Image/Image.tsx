@@ -3,6 +3,7 @@ import image from "../../assets/person.png";
 import { AppContext } from "../../context/AppContext";
 import { ElementChangeObserver as ElementToggleObserver } from "../../types/ElementToggleObserver";
 import { EnumType } from "../../types/EnumType";
+import { ICoordinate } from "../../types/ICoordinate";
 import { CoordinateTracker } from "../../utils/coordinateTracker/CoordinateTracker";
 import { repeat } from "../../utils/repeat";
 import { style } from "../../utils/style";
@@ -17,13 +18,18 @@ export function Image<T extends EnumType>(props: IImageProps<T>) {
   let onDeactivateObserver: ElementToggleObserver;
   const coordinateTracker = useMemo(() => new CoordinateTracker<T>(), []);
 
+  const gridData = useMemo(() => {
+    const data: Map<T[keyof T], ICoordinate[]> = new Map();
+    return props.gridData(data);
+  }, [props]);
+
   useEffect(() => {
-    props.gridData.forEach((coordinates, key) =>
+    gridData.forEach((coordinates, key) =>
       coordinates.forEach((coordinate) =>
         coordinateTracker.add(key, coordinate)
       )
     );
-  }, [coordinateTracker, props.gridData]);
+  }, [coordinateTracker, gridData]);
 
   const items = () =>
     repeat(context.gridHeight.value, (index) => (
@@ -64,7 +70,8 @@ export function Image<T extends EnumType>(props: IImageProps<T>) {
         <div>
           <DesignMode
             coordinateTracker={coordinateTracker}
-            options={props.options}
+            enumName={props.enumName}
+            enumType={props.enumType}
             refOnActivate={(elementToggleObserver) =>
               (onActivateObserver = elementToggleObserver)
             }

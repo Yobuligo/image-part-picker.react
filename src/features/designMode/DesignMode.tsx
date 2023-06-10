@@ -12,19 +12,22 @@ export function DesignMode<T extends EnumType>(props: IDesignModeProps<T>) {
   const partId = useId();
   const textAreaId = useId();
   const [selectedPart, setSelectedPart] = useState<T[keyof T]>(
-    Enum.first(props.options)
+    Enum.first(props.enumType)
   );
   const context = useContext(AppContext);
   const [code, setCode] = useState("");
 
-  const codeGenerator = useMemo(() => new CodeGenerator<T>(), []);
+  const codeGenerator = useMemo(
+    () => new CodeGenerator<T>(props.enumName),
+    [props.enumName]
+  );
 
   const items = useMemo(
     () =>
-      Enum.keys(props.options).map((option) => (
+      Enum.keys(props.enumType).map((option) => (
         <option key={option.toString()}>{option.toString()}</option>
       )),
-    [props.options]
+    [props.enumType]
   );
 
   const onChangeGridWidth = (newValue: string) =>
@@ -83,7 +86,7 @@ export function DesignMode<T extends EnumType>(props: IDesignModeProps<T>) {
           id={textAreaId}
           cols={50}
           rows={20}
-          value={code}
+          defaultValue={code}
         />
       </div>
     </div>
