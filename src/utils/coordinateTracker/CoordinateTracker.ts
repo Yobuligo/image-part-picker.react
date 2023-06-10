@@ -11,6 +11,19 @@ export class CoordinateTracker<T extends EnumType>
     this.coordinates.set(this.fromCoordinate(coordinate), part);
   }
 
+  findAll(): Map<T, ICoordinate[]> {
+    const map = new Map<T, ICoordinate[]>();
+    this.coordinates.forEach((value, serializedCoordinate) => {
+      const coordinates = map.get(value);
+      if (coordinates === undefined) {
+        map.set(value, [this.toCoordinate(serializedCoordinate)]);
+      } else {
+        coordinates.push(this.toCoordinate(serializedCoordinate));
+      }
+    });
+    return map;
+  }
+
   findByPart(part: T[keyof T]): ICoordinate[] {
     const coordinates: ICoordinate[] = [];
     this.coordinates.forEach((value, coordinate) => {

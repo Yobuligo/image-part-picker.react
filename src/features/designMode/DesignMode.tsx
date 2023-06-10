@@ -4,15 +4,20 @@ import { AppContext } from "../../context/AppContext";
 import { ElementChangeObserver } from "../../types/ElementToggleObserver";
 import { EnumType } from "../../types/EnumType";
 import { Enum } from "../../utils/Enum";
+import { CodeGenerator } from "../../utils/codeGenerator/CodeGenerator";
 import styles from "./DesignMode.module.css";
 import { IDesignModeProps } from "./IDesignModeProps";
 
 export function DesignMode<T extends EnumType>(props: IDesignModeProps<T>) {
   const partId = useId();
+  const textAreaId = useId();
   const [selectedPart, setSelectedPart] = useState<T[keyof T]>(
     Enum.first(props.options)
   );
   const context = useContext(AppContext);
+  const [code, setCode] = useState("");
+
+  const codeGenerator = useMemo(() => new CodeGenerator<T>(), []);
 
   const items = useMemo(
     () =>
@@ -28,11 +33,15 @@ export function DesignMode<T extends EnumType>(props: IDesignModeProps<T>) {
   const onChangeGridHeight = (newValue: string) =>
     context.gridHeight.setValue(+newValue);
 
-  const onActivate: ElementChangeObserver = (coordinate) =>
+  const onActivate: ElementChangeObserver = (coordinate) => {
     props.coordinateTracker.add(selectedPart, coordinate);
+    setCode(codeGenerator.generate(props.coordinateTracker));
+  };
 
-  const onDeactivate: ElementChangeObserver = (coordinate) =>
+  const onDeactivate: ElementChangeObserver = (coordinate) => {
     props.coordinateTracker.remove(coordinate);
+    setCode(codeGenerator.generate(props.coordinateTracker));
+  };
 
   props.refOnActivate(onActivate);
   props.refOnDeactivate(onDeactivate);
@@ -65,6 +74,18 @@ export function DesignMode<T extends EnumType>(props: IDesignModeProps<T>) {
       <select name={partId} id={partId} onChange={onSelectPart}>
         {items}
       </select>
+      <div>
+        <label htmlFor={textAreaId}>Generated Code</label>
+      </div>
+      <div>
+        <textarea
+          name={textAreaId}
+          id={textAreaId}
+          cols={50}
+          rows={20}
+          value={code}
+        />
+      </div>
     </div>
   );
 }
