@@ -1,4 +1,11 @@
-import { useContext, useId, useMemo, useState } from "react";
+import {
+  useCallback,
+  useContext,
+  useEffect,
+  useId,
+  useMemo,
+  useState,
+} from "react";
 import { LabeledInput } from "../../components/LabeledInput";
 import { AppContext } from "../../context/AppContext";
 import { ElementChangeObserver } from "../../types/ElementToggleObserver";
@@ -36,14 +43,31 @@ export function DesignMode<T extends EnumType>(props: IDesignModeProps<T>) {
   const onChangeGridHeight = (newValue: string) =>
     context.gridHeight.setValue(+newValue);
 
+  const updateCode = useCallback(
+    () =>
+      setCode(
+        codeGenerator.generate(
+          props.coordinateTracker,
+          context.gridWidth.value,
+          context.gridHeight.value
+        )
+      ),
+    [
+      codeGenerator,
+      context.gridHeight.value,
+      context.gridWidth.value,
+      props.coordinateTracker,
+    ]
+  );
+
   const onActivate: ElementChangeObserver = (coordinate) => {
     props.coordinateTracker.add(selectedPart, coordinate);
-    setCode(codeGenerator.generate(props.coordinateTracker));
+    updateCode();
   };
 
   const onDeactivate: ElementChangeObserver = (coordinate) => {
     props.coordinateTracker.remove(coordinate);
-    setCode(codeGenerator.generate(props.coordinateTracker));
+    updateCode();
   };
 
   props.refOnActivate(onActivate);
@@ -56,6 +80,10 @@ export function DesignMode<T extends EnumType>(props: IDesignModeProps<T>) {
     context.grid.setAll(false);
     context.grid.setByCoordinates(coordinates, true);
   };
+
+  useEffect(() => {
+    updateCode();
+  }, [context.gridWidth.value, context.gridHeight.value, updateCode]);
 
   return (
     <div className={styles.designMode}>
