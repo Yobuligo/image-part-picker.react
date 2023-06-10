@@ -28,7 +28,7 @@ const App: React.FC = () => {
     <AppContextProvider gridWidth={20} gridHeight={20}>
       <Image
         config={{
-          designMode: false,
+          designMode: true,
         }}
         options={Part}
         gridData={gridData}
