@@ -30,11 +30,11 @@ export class CoordinateTracker<T extends EnumType>
   }
 
   private fromCoordinate(coordinate: ICoordinate): string {
-    return `${coordinate[0]},${coordinate[1]}`;
+    return `${coordinate.x},${coordinate.y}`;
   }
 
   private toCoordinate(coordinate: string): ICoordinate {
     const values = coordinate.split(",");
-    return [+values.at(0)!, +values.at(1)!];
+    return { x: +values.at(0)!, y: +values.at(1)! };
   }
 }

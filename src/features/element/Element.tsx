@@ -7,8 +7,8 @@ import { IElementProps } from "./IElementProps";
 export const Element: React.FC<IElementProps> = (props) => {
   const context = useContext(AppContext);
   const highlighted = context.grid.find(
-    props.coordinate[0],
-    props.coordinate[1]
+    props.coordinate.x,
+    props.coordinate.y
   );
   const styleProps = {
     width: `${100 / context.gridWidth.value}%`,
@@ -23,8 +23,8 @@ export const Element: React.FC<IElementProps> = (props) => {
       style={styleProps}
       onClick={() => {
         context.grid.set(
-          props.coordinate[0],
-          props.coordinate[1],
+          props.coordinate.x,
+          props.coordinate.y,
           (previous) => {
             if (!previous) {
               props.onActivate?.(props.coordinate);
