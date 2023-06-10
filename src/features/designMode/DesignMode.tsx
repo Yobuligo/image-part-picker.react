@@ -39,6 +39,7 @@ export function DesignMode<T extends EnumType>(props: IDesignModeProps<T>) {
 
   const onSelectPart = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedPart(event.target.value as T[keyof T]);
+    context.grid.setAll(false);
   };
 
   return (
