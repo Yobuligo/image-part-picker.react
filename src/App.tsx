@@ -1,10 +1,14 @@
+import { useState } from "react";
 import { Image } from "./features/Image/Image";
 import { AppContextProvider } from "./features/appContextProvider/AppContextProvider";
+import { Title } from "./features/title/Title";
 import { Part } from "./types/Part";
 
 const App: React.FC = () => {
+  const [title, setTitle] = useState("");
   return (
     <AppContextProvider>
+      <Title title={title} />
       <Image
         config={{
           designMode: false,
@@ -146,16 +150,7 @@ const App: React.FC = () => {
           return grid;
         }}
         onSelect={(part) => {
-          switch (part) {
-            case Part.Head: {
-              console.log(`Head was clicked`);
-              break;
-            }
-
-            case Part.Arms: {
-              console.log(`Arms was clicked`);
-            }
-          }
+          setTitle(`${Part[part]} was clicked`);
         }}
       />
     </AppContextProvider>
