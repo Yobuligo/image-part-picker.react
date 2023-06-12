@@ -25,6 +25,7 @@ export const Element: React.FC<IElementProps> = (props) => {
           } else {
             props.onDeactivate?.(props.coordinate);
           }
+          props.onClick(props.coordinate);
           return !previous;
         });
       }}

@@ -6,6 +6,7 @@ import { EnumType } from "../../types/EnumType";
 import { ICoordinate } from "../../types/ICoordinate";
 import { IGridConfig } from "../../types/IGridConfig";
 import { CoordinateTracker } from "../../utils/coordinateTracker/CoordinateTracker";
+import { ifTrue } from "../../utils/ifTrue";
 import { repeat } from "../../utils/repeat";
 import { style } from "../../utils/style";
 import { Column } from "../column/Column";
@@ -37,25 +38,31 @@ export function Image<T extends EnumType>(props: IImageProps<T>) {
     );
   }, [coordinateTracker, gridConfig]);
 
+  const onActivate = (coordinate: ICoordinate): void =>
+    ifTrue(props.config.designMode, () => onActivateObserver?.(coordinate));
+
+  const onDeactivate = (coordinate: ICoordinate): void => {
+    ifTrue(props.config.designMode, () => onDeactivateObserver?.(coordinate));
+  };
+
+  const onElementClick = (coordinate: ICoordinate): void => {
+    if (!props.config.designMode) {
+      const part = coordinateTracker.findByCoordinate(coordinate);
+      if (part) {
+        props.onSelect(part);
+      }
+    }
+  };
+
   const items = () =>
     repeat(context.gridHeight.value, (index) => (
       <Column
         key={index}
         config={props.config}
         y={index}
-        onActivate={(coordinate) => {
-          if (props.config.designMode) {
-            onActivateObserver?.(coordinate);
-          } else {
-            const part = coordinateTracker.findByCoordinate(coordinate);
-            if (part) {
-              props.onSelect(part);
-            }
-          }
-        }}
-        onDeactivate={(coordinate) => {
-          onDeactivateObserver?.(coordinate);
-        }}
+        onActivate={onActivate}
+        onClick={onElementClick}
+        onDeactivate={onDeactivate}
       />
     ));
 
