@@ -48,7 +48,7 @@ export function Image<T extends EnumType>(props: IImageProps<T>) {
   const onElementClick = (coordinate: ICoordinate): void => {
     if (!props.config.designMode) {
       const part = coordinateTracker.findByCoordinate(coordinate);
-      if (part) {
+      if (part !== undefined) {
         props.onSelect(part);
       }
     }
