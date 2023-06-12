@@ -102,7 +102,7 @@ export function DesignMode<T extends EnumType>(props: IDesignModeProps<T>) {
       <div>
         <label htmlFor={partId}>Part</label>
       </div>
-      <select name={partId} id={partId} onChange={onSelectPart}>
+      <select name={partId} id={partId} onChange={onSelectPart} value={selectedPart}>
         {items}
       </select>
       <div>

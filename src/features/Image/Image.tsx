@@ -11,7 +11,6 @@ import { repeat } from "../../utils/repeat";
 import { style } from "../../utils/style";
 import { Column } from "../column/Column";
 import { DesignMode } from "../designMode/DesignMode";
-import { Title } from "../title/Title";
 import { IImageProps } from "./IImageProps";
 import styles from "./Image.module.css";
 
