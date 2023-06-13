@@ -122,6 +122,7 @@ export function DesignMode<T extends EnumType>(props: IDesignModeProps<T>) {
           cols={50}
           rows={20}
           defaultValue={code}
+          readOnly
         />
       </div>
     </div>
