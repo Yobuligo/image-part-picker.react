@@ -20,15 +20,28 @@ export function Image<T extends EnumType>(props: IImageProps<T>) {
   let onDeactivateObserver: ElementToggleObserver;
   const coordinateTracker = useMemo(() => new CoordinateTracker<T>(), []);
 
-  const gridConfig = useMemo(() => {
-    const data: Map<T[keyof T], ICoordinate[]> = new Map();
-    const gridConfig: IGridConfig<T> = {
-      data,
-      setWidth: context.grid.setWidth,
-      setHeight: context.grid.setHeight,
-    };
-    return props.gridConfig(gridConfig);
+  const gridConfig: IGridConfig<T> = useMemo(() => {
+    if (props.config.designMode) {
+      return {
+        data: new Map(),
+        setWidth: context.grid.setWidth,
+        setHeight: context.grid.setHeight,
+      };
+    } else {
+      const data: Map<T[keyof T], ICoordinate[]> = new Map();
+      const gridConfig: IGridConfig<T> = {
+        data,
+        setWidth: context.grid.setWidth,
+        setHeight: context.grid.setHeight,
+      };
+      return props.gridConfig(gridConfig);
+    }
   }, [context.grid.setHeight, context.grid.setWidth, props]);
+
+  useEffect(()=>{
+    context.grid.setAll(false)
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  },[props.config.designMode])
 
   useEffect(() => {
     gridConfig.data.forEach((coordinates, key) =>
