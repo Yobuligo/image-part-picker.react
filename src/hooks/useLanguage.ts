@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { Language } from "../types/Language";
+import { getDefaultLanguage } from "../utils/getDefaultLanguage";
 
 export const useLanguage = () => {
-  const [language, setLanguage] = useState(Language.en);
+  const [language, setLanguage] = useState(getDefaultLanguage());
   return [language, setLanguage];
 };
