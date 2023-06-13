@@ -14,6 +14,7 @@ import { Enum } from "../../utils/Enum";
 import { CodeGenerator } from "../../utils/codeGenerator/CodeGenerator";
 import styles from "./DesignMode.module.css";
 import { IDesignModeProps } from "./IDesignModeProps";
+import { useTranslation } from "../../hooks/useTranslation";
 
 export function DesignMode<T extends EnumType>(props: IDesignModeProps<T>) {
   const partId = useId();
@@ -23,6 +24,7 @@ export function DesignMode<T extends EnumType>(props: IDesignModeProps<T>) {
   );
   const context = useContext(AppContext);
   const [code, setCode] = useState("");
+  const { t } = useTranslation();
 
   const codeGenerator = useMemo(
     () => new CodeGenerator<T>(props.enumName),
@@ -88,25 +90,30 @@ export function DesignMode<T extends EnumType>(props: IDesignModeProps<T>) {
   return (
     <div className={styles.designMode}>
       <LabeledInput
-        label="Grid With"
+        label={t.designMode.gridWidth}
         type="number"
         value={context.gridWidth.value}
         onValueChanged={onChangeGridWidth}
       />
       <LabeledInput
-        label="Grid Height"
+        label={t.designMode.gridHeight}
         type="number"
         value={context.gridHeight.value}
         onValueChanged={onChangeGridHeight}
       />
       <div>
-        <label htmlFor={partId}>Part</label>
+        <label htmlFor={partId}>{t.designMode.part}</label>
       </div>
-      <select name={partId} id={partId} onChange={onSelectPart} value={selectedPart}>
+      <select
+        name={partId}
+        id={partId}
+        onChange={onSelectPart}
+        value={selectedPart}
+      >
         {items}
       </select>
       <div>
-        <label htmlFor={textAreaId}>Generated Code</label>
+        <label htmlFor={textAreaId}>{t.designMode.generatedCode}</label>
       </div>
       <div>
         <textarea

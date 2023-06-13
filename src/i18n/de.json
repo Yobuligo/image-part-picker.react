@@ -1,3 +1,8 @@
 {
-    "test":"Test"
+    "designMode": {
+        "gridWidth": "Raster Breite",
+        "gridHeight": "Raster Höhe",
+        "part": "Bestandteil",
+        "generatedCode": "Generiertes Coding"
+    }
 }

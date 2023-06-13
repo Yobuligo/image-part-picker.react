@@ -1,15 +1,13 @@
-import { useState } from "react";
 import * as translations from "../i18n";
+import { Language } from "../types/Language";
+import { useLanguage } from "./useLanguage";
 
 export const useTranslation = () => {
-  const [language, setLanguage] = useState("en");
-
+  const [language] = useLanguage();
   switch (language) {
-    case "en":
-      return translations.en;
-    case "de":
-      return translations.de;
+    case Language.de:
+      return { t: translations.de };
     default:
-      return translations.en;
+      return { t: translations.en };
   }
 };

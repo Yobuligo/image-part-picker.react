@@ -11,7 +11,7 @@ const App: React.FC = () => {
       <Title title={title} />
       <Image
         config={{
-          designMode: false,
+          designMode: true,
         }}
         enumName={"Part"}
         enumType={Part}
