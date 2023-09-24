@@ -1,7 +1,8 @@
+import { IImagePartGridProps } from "./features/imagePartGrid/IImagePartGridProps";
 import { EnumType } from "./types/EnumType";
-import { IGridConfig } from "./types/IGridConfig";
 
-export interface IImagePartPickerProps<T extends EnumType> {
-  gridConfig: (grid: IGridConfig<T>) => IGridConfig<T>;
-  onSelect?: (part: T[keyof T]) => void;
+export interface IImagePartPickerProps<T extends EnumType>
+  extends IImagePartGridProps<T> {
+  gridWidth: number;
+  gridHeight: number;
 }

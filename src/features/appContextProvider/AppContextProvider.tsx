@@ -1,6 +1,6 @@
 import { ImagePartPickerContext } from "../../components/imagePartPicker/context/ImagePartPickerContext";
 import { useGrid } from "../../components/imagePartPicker/hooks/useGrid";
-import { useValue } from "../../hooks/useValue";
+import { useValue } from "../../components/imagePartPicker/hooks/useValue";
 import { IAppContextProviderProps } from "./IAppContextProviderProps";
 
 export const AppContextProvider: React.FC<IAppContextProviderProps> = (
