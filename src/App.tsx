@@ -190,6 +190,27 @@ const App: React.FC = () => {
             { x: 12, y: 2 },
             { x: 13, y: 2 },
           ]);
+
+          grid.data.set(Part.LeftArm, [
+            { x: 1, y: 2 },
+            { x: 2, y: 3 },
+            { x: 4, y: 4 },
+            { x: 5, y: 4 },
+            { x: 5, y: 3 },
+            { x: 4, y: 3 },
+            { x: 3, y: 3 },
+            { x: 3, y: 4 },
+            { x: 2, y: 4 },
+            { x: 2, y: 2 },
+            { x: 1, y: 3 },
+            { x: 0, y: 2 },
+            { x: 0, y: 1 },
+            { x: 6, y: 5 },
+            { x: 5, y: 5 },
+            { x: 6, y: 4 },
+            { x: 6, y: 3 },
+          ]);
+
           return grid;
         }}
         gridHeight={20}
