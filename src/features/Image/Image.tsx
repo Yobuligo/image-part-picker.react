@@ -3,7 +3,7 @@ import { ImagePartPickerContext } from "../../components/imagePartPicker/context
 import { EnumType } from "../../components/imagePartPicker/types/EnumType";
 import { ICoordinate } from "../../components/imagePartPicker/types/ICoordinate";
 import { IGridConfig } from "../../components/imagePartPicker/types/IGridConfig";
-import { CoordinateTracker } from "../../components/imagePartPicker/utils/coordinateTracker/CoordinateTracker";
+import { CoordinateTracker } from "../../components/imagePartPicker/services/CoordinateTracker";
 import { repeat } from "../../components/imagePartPicker/utils/repeat";
 import { ElementChangeObserver as ElementToggleObserver } from "../../types/ElementToggleObserver";
 import { ifTrue } from "../../utils/ifTrue";

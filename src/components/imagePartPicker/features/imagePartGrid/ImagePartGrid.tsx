@@ -2,7 +2,7 @@ import { useContext, useMemo } from "react";
 import { ImagePartPickerContext } from "../../context/ImagePartPickerContext";
 import { EnumType } from "../../types/EnumType";
 import { ICoordinate } from "../../types/ICoordinate";
-import { CoordinateTracker } from "../../utils/coordinateTracker/CoordinateTracker";
+import { CoordinateTracker } from "../../services/CoordinateTracker";
 import { repeat } from "../../utils/repeat";
 import { Column } from "../column/Column";
 import { IImagePartGridProps } from "./IImagePartGridProps";

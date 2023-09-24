@@ -1,5 +1,5 @@
-import { EnumType } from "../../types/EnumType";
-import { ICoordinate } from "../../types/ICoordinate";
+import { EnumType } from "../types/EnumType";
+import { ICoordinate } from "../types/ICoordinate";
 
 export interface ICoordinateTracker<T extends EnumType> {
   add(part: T[keyof T], coordinate: ICoordinate): void;
