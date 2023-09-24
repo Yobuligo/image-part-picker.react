@@ -1,5 +1,5 @@
 import { EnumType } from "../../components/imagePartPicker/types/EnumType";
-import { ICoordinateTracker } from "../coordinateTracker/ICoordinateTracker";
+import { ICoordinateTracker } from "../../components/imagePartPicker/utils/coordinateTracker/ICoordinateTracker";
 
 export interface ICodeGenerator<T extends EnumType> {
   generate(

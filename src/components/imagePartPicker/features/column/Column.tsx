@@ -1,6 +1,6 @@
 import { useContext } from "react";
-import { ImagePartPickerContext } from "../../components/imagePartPicker/context/ImagePartPickerContext";
-import { repeat } from "../../components/imagePartPicker/utils/repeat";
+import { ImagePartPickerContext } from "../../context/ImagePartPickerContext";
+import { repeat } from "../../utils/repeat";
 import { Element } from "../element/Element";
 import styles from "./Column.module.css";
 import { IColumnProps } from "./IColumnProps";
@@ -17,7 +17,6 @@ export const Column: React.FC<IColumnProps> = (props) => {
       <Element
         {...props}
         key={`${index},${props.y}`}
-        config={props.config}
         coordinate={{ x: index, y: props.y }}
       />
     ));

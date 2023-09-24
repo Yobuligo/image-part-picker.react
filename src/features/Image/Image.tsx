@@ -5,9 +5,9 @@ import { ElementChangeObserver as ElementToggleObserver } from "../../types/Elem
 import { EnumType } from "../../components/imagePartPicker/types/EnumType";
 import { ICoordinate } from "../../components/imagePartPicker/types/ICoordinate";
 import { IGridConfig } from "../../components/imagePartPicker/types/IGridConfig";
-import { CoordinateTracker } from "../../utils/coordinateTracker/CoordinateTracker";
+import { CoordinateTracker } from "../../components/imagePartPicker/utils/coordinateTracker/CoordinateTracker";
 import { ifTrue } from "../../utils/ifTrue";
-import { repeat } from "../../utils/repeat";
+import { repeat } from "../../components/imagePartPicker/utils/repeat";
 import { style } from "../../utils/style";
 import { Column } from "../column/Column";
 import { DesignMode } from "../designMode/DesignMode";

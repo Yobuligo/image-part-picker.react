@@ -1,5 +1,5 @@
 import { ImagePartPickerContext } from "../../components/imagePartPicker/context/ImagePartPickerContext";
-import { useGrid } from "../../hooks/useGrid";
+import { useGrid } from "../../components/imagePartPicker/hooks/useGrid";
 import { useValue } from "../../hooks/useValue";
 import { IAppContextProviderProps } from "./IAppContextProviderProps";
 
