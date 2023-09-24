@@ -34,51 +34,24 @@ const App: React.FC = () => {
           grid.data.set(Part.Head, [
             { x: 8, y: 0 },
             { x: 9, y: 0 },
-            { x: 10, y: 0 },
-            { x: 11, y: 0 },
-            { x: 12, y: 0 },
-            { x: 13, y: 0 },
-            { x: 13, y: 1 },
-            { x: 12, y: 1 },
-            { x: 11, y: 1 },
-            { x: 10, y: 1 },
-            { x: 9, y: 1 },
-            { x: 8, y: 1 },
-            { x: 8, y: 2 },
-            { x: 9, y: 2 },
-            { x: 10, y: 2 },
-            { x: 11, y: 2 },
-            { x: 12, y: 2 },
             { x: 13, y: 2 },
           ]);
-
           grid.data.set(Part.LeftArm, [
             { x: 1, y: 2 },
             { x: 2, y: 3 },
-            { x: 4, y: 4 },
-            { x: 5, y: 4 },
-            { x: 5, y: 3 },
-            { x: 4, y: 3 },
-            { x: 3, y: 3 },
-            { x: 3, y: 4 },
-            { x: 2, y: 4 },
-            { x: 2, y: 2 },
-            { x: 1, y: 3 },
-            { x: 0, y: 2 },
-            { x: 0, y: 1 },
-            { x: 6, y: 5 },
-            { x: 5, y: 5 },
-            { x: 6, y: 4 },
             { x: 6, y: 3 },
           ]);
-
           return grid;
         }}
         gridHeight={20}
         gridWidth={20}
         image={<PersonImage style={{ width: "30rem", height: "auto" }} />}
         onSelect={(part) => {
-          debugger;
+          switch (part) {
+            case Part.Body: {
+              // ...
+            }
+          }
         }}
       />
     </>

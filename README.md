@@ -1,46 +1,51 @@
-# Getting Started with Create React App
+# Image Part Picker
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This application can be used to assign coordinates to an image part and to handle clicks on the image part.
 
-## Available Scripts
+# How to use
 
-In the project directory, you can run:
+## Preparation
+1. Create a local copy of this repository
+2. Provide the image that should be divided into parts by uploading it the app into folder assets. The image must be of type svg (vector)
+3. Provide an enum that should be used and provide the parts of that image. Like in the example the enum 'Part' with 'Body', 'Chest', etc.
+4. Import the image into App.tsx, like currently done for PersonImage.
 
-### `npm start`
+## Define image parts
+1. Call npm install and start the application (npm start).
+2. Select a part of the image from the dropdown and assign coordinates by clicking into the image at the specific part. Repeat that for each part of the image.
+3. Copy the generated code from the textbox.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Prepare usage
+1. Copy folder src/components/imagePartPicker and all its files into your project, where the ImagePartPicker should be used
+2. Provide the image to your project too
+3. Provide the enum with the image parts into your project too
+4. Call component ImagePartPicker. Fill property image and provide the enum type as <typeOf <EnumName>> and paste the copied code into property gridConfig
+5. Implement function onSelect to handle click event
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+```
+<ImagePartPicker<typeof Part>
+  gridConfig={(grid) => {
+    grid.setWidth(20);
+    grid.setHeight(20);
+    grid.data.set(Part.Head, [
+      { x: 8, y: 0 },
+      { x: 9, y: 0 },
+    ]);
+    grid.data.set(Part.LeftArm, [
+      { x: 1, y: 2 },
+      { x: 2, y: 3 },
+    ]);
+    return grid;
+  }}
+  gridHeight={20}
+  gridWidth={20}
+  image={<PersonImage style={{ width: "30rem", height: "auto" }} />}
+  onSelect={(part) => {
+    switch (part) {
+      case Part.Body: {
+        // ...
+      }
+    }
+  }}
+/>
+```
