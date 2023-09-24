@@ -1,4 +1,4 @@
-import { ICoordinate } from "./ICoordinate";
+import { ICoordinate } from "../components/imagePartPicker/types/ICoordinate";
 
 export interface IGrid<T> {
   find(coordinate: ICoordinate): T | undefined;

@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
-import { ICoordinate } from "../types/ICoordinate";
+import { ICoordinate } from "../components/imagePartPicker/types/ICoordinate";
 import { IGrid } from "../types/IGrid";
 
 type Row<T> = (T | undefined)[];

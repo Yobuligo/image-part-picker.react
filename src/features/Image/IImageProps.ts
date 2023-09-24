@@ -1,4 +1,4 @@
-import { IGridConfig } from "../../types/IGridConfig";
+import { IGridConfig } from "../../components/imagePartPicker/types/IGridConfig";
 import { IHaveConfig } from "../../types/IHaveConfig";
 import { EnumType } from "../../components/imagePartPicker/types/EnumType";
 

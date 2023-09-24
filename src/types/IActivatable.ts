@@ -1,4 +1,4 @@
-import { ICoordinate } from "./ICoordinate";
+import { ICoordinate } from "../components/imagePartPicker/types/ICoordinate";
 
 export interface IActivatable {
   onActivate?: (coordinate: ICoordinate) => void;
