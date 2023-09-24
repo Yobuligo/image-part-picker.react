@@ -1,4 +1,4 @@
-import { AppContext } from "../../context/AppContext";
+import { ImagePartPickerContext } from "../../components/imagePartPicker/context/ImagePartPickerContext";
 import { useGrid } from "../../hooks/useGrid";
 import { useValue } from "../../hooks/useValue";
 import { IAppContextProviderProps } from "./IAppContextProviderProps";
@@ -10,7 +10,7 @@ export const AppContextProvider: React.FC<IAppContextProviderProps> = (
   const gridHeight = useValue(20);
 
   return (
-    <AppContext.Provider
+    <ImagePartPickerContext.Provider
       value={{
         gridWidth: gridWidth,
         gridHeight: gridHeight,
@@ -18,6 +18,6 @@ export const AppContextProvider: React.FC<IAppContextProviderProps> = (
       }}
     >
       {props.children}
-    </AppContext.Provider>
+    </ImagePartPickerContext.Provider>
   );
 };

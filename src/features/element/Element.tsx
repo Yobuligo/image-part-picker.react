@@ -1,11 +1,11 @@
 import { useContext } from "react";
-import { AppContext } from "../../context/AppContext";
+import { ImagePartPickerContext } from "../../components/imagePartPicker/context/ImagePartPickerContext";
 import { style } from "../../utils/style";
 import styles from "./Element.module.css";
 import { IElementProps } from "./IElementProps";
 
 export const Element: React.FC<IElementProps> = (props) => {
-  const context = useContext(AppContext);
+  const context = useContext(ImagePartPickerContext);
   const highlighted = context.grid.find(props.coordinate);
   const styleProps = {
     width: `${100 / context.gridWidth.value}%`,

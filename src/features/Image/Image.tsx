@@ -1,6 +1,6 @@
 import { useContext, useEffect, useMemo } from "react";
 import image from "../../assets/person.png";
-import { AppContext } from "../../context/AppContext";
+import { ImagePartPickerContext } from "../../components/imagePartPicker/context/ImagePartPickerContext";
 import { ElementChangeObserver as ElementToggleObserver } from "../../types/ElementToggleObserver";
 import { EnumType } from "../../components/imagePartPicker/types/EnumType";
 import { ICoordinate } from "../../components/imagePartPicker/types/ICoordinate";
@@ -15,7 +15,7 @@ import { IImageProps } from "./IImageProps";
 import styles from "./Image.module.css";
 
 export function Image<T extends EnumType>(props: IImageProps<T>) {
-  const context = useContext(AppContext);
+  const context = useContext(ImagePartPickerContext);
   let onActivateObserver: ElementToggleObserver;
   let onDeactivateObserver: ElementToggleObserver;
   const coordinateTracker = useMemo(() => new CoordinateTracker<T>(), []);

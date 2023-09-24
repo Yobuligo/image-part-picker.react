@@ -1,12 +1,12 @@
 import { useContext } from "react";
-import { AppContext } from "../../context/AppContext";
+import { ImagePartPickerContext } from "../../components/imagePartPicker/context/ImagePartPickerContext";
 import { repeat } from "../../utils/repeat";
 import { Element } from "../element/Element";
 import styles from "./Column.module.css";
 import { IColumnProps } from "./IColumnProps";
 
 export const Column: React.FC<IColumnProps> = (props) => {
-  const context = useContext(AppContext);
+  const context = useContext(ImagePartPickerContext);
 
   const styleProps = {
     height: `${100 / context.gridHeight.value}%`,

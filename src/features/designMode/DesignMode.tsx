@@ -7,7 +7,7 @@ import {
   useState,
 } from "react";
 import { LabeledInput } from "../../components/LabeledInput";
-import { AppContext } from "../../context/AppContext";
+import { ImagePartPickerContext } from "../../components/imagePartPicker/context/ImagePartPickerContext";
 import { ElementChangeObserver } from "../../types/ElementToggleObserver";
 import { EnumType } from "../../components/imagePartPicker/types/EnumType";
 import { Enum } from "../../utils/Enum";
@@ -22,7 +22,7 @@ export function DesignMode<T extends EnumType>(props: IDesignModeProps<T>) {
   const [selectedPart, setSelectedPart] = useState<T[keyof T]>(
     Enum.first(props.enumType)
   );
-  const context = useContext(AppContext);
+  const context = useContext(ImagePartPickerContext);
   const [code, setCode] = useState("");
   const { t } = useTranslation();
 
