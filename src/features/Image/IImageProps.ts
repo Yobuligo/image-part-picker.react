@@ -1,6 +1,6 @@
 import { IGridConfig } from "../../types/IGridConfig";
 import { IHaveConfig } from "../../types/IHaveConfig";
-import { EnumType } from "./../../types/EnumType";
+import { EnumType } from "../../components/imagePartPicker/types/EnumType";
 
 export interface IImageProps<T extends EnumType> extends IHaveConfig {
   enumType: T;

@@ -1,4 +1,4 @@
-import { EnumType } from "../types/EnumType";
+import { EnumType } from "../components/imagePartPicker/types/EnumType";
 
 class EnumDefault {
   first<T extends EnumType>(enumType: T): T[keyof T] {

@@ -1,4 +1,4 @@
-import { EnumType } from "../../types/EnumType";
+import { EnumType } from "../../components/imagePartPicker/types/EnumType";
 import { ICoordinate } from "../../types/ICoordinate";
 
 export interface ICoordinateTracker<T extends EnumType> {

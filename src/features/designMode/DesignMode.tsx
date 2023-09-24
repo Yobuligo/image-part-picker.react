@@ -9,7 +9,7 @@ import {
 import { LabeledInput } from "../../components/LabeledInput";
 import { AppContext } from "../../context/AppContext";
 import { ElementChangeObserver } from "../../types/ElementToggleObserver";
-import { EnumType } from "../../types/EnumType";
+import { EnumType } from "../../components/imagePartPicker/types/EnumType";
 import { Enum } from "../../utils/Enum";
 import { CodeGenerator } from "../../utils/codeGenerator/CodeGenerator";
 import styles from "./DesignMode.module.css";

@@ -1,4 +1,4 @@
-import { EnumType } from "./EnumType";
+import { EnumType } from "../components/imagePartPicker/types/EnumType";
 import { ICoordinate } from "./ICoordinate";
 
 export interface IGridConfig<T extends EnumType> {

@@ -2,7 +2,7 @@ import { useContext, useEffect, useMemo } from "react";
 import image from "../../assets/person.png";
 import { AppContext } from "../../context/AppContext";
 import { ElementChangeObserver as ElementToggleObserver } from "../../types/ElementToggleObserver";
-import { EnumType } from "../../types/EnumType";
+import { EnumType } from "../../components/imagePartPicker/types/EnumType";
 import { ICoordinate } from "../../types/ICoordinate";
 import { IGridConfig } from "../../types/IGridConfig";
 import { CoordinateTracker } from "../../utils/coordinateTracker/CoordinateTracker";
