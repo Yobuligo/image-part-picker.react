@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { ReactComponent as PersonImage } from "./assets/person.svg";
 import { Image } from "./features/Image/Image";
 import { AppContextProvider } from "./features/appContextProvider/AppContextProvider";
 import { Title } from "./features/title/Title";
@@ -15,6 +16,7 @@ const App: React.FC = () => {
         }}
         enumName={"Part"}
         enumType={Part}
+        image={<PersonImage style={{ width: "30rem", height: "auto" }} />}
         gridConfig={(grid) => {
           grid.setWidth(20);
           grid.setHeight(20);

@@ -1,13 +1,12 @@
 import { useContext, useEffect, useMemo } from "react";
-import image from "../../assets/person.png";
 import { ImagePartPickerContext } from "../../components/imagePartPicker/context/ImagePartPickerContext";
-import { ElementChangeObserver as ElementToggleObserver } from "../../types/ElementToggleObserver";
 import { EnumType } from "../../components/imagePartPicker/types/EnumType";
 import { ICoordinate } from "../../components/imagePartPicker/types/ICoordinate";
 import { IGridConfig } from "../../components/imagePartPicker/types/IGridConfig";
 import { CoordinateTracker } from "../../components/imagePartPicker/utils/coordinateTracker/CoordinateTracker";
-import { ifTrue } from "../../utils/ifTrue";
 import { repeat } from "../../components/imagePartPicker/utils/repeat";
+import { ElementChangeObserver as ElementToggleObserver } from "../../types/ElementToggleObserver";
+import { ifTrue } from "../../utils/ifTrue";
 import { style } from "../../utils/style";
 import { Column } from "../column/Column";
 import { DesignMode } from "../designMode/DesignMode";
@@ -38,10 +37,10 @@ export function Image<T extends EnumType>(props: IImageProps<T>) {
     }
   }, [context.grid.setHeight, context.grid.setWidth, props]);
 
-  useEffect(()=>{
-    context.grid.setAll(false)
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  },[props.config.designMode])
+  useEffect(() => {
+    context.grid.setAll(false);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [props.config.designMode]);
 
   useEffect(() => {
     gridConfig.data.forEach((coordinates, key) =>
@@ -82,7 +81,7 @@ export function Image<T extends EnumType>(props: IImageProps<T>) {
   return (
     <div className={styles.imageFrame}>
       <div className={styles.image}>
-        <img src={image} alt="Person" />
+        {props.image}
         <div
           className={style(
             styles.imageComponent,

@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" version="1.1" style="shape-rendering:geometricPrecision;text-rendering:geometricPrecision;image-rendering:optimizeQuality;" viewBox="0 0 248 380" x="0px" y="0px" fill-rule="evenodd" clip-rule="evenodd">
+  <defs>
+    <style type="text/css">
+   
+    .fil0 {fill:black}
+   
+    </style>
+  </defs>
+  <g>
+    <g>
+      <path class="fil0" d="M25 323c59,-91 86,-153 84,-205 -62,-26 -83,-47 -109,-82 96,61 165,80 248,-24 -2,17 -28,71 -79,104 7,83 -15,206 -55,253 6,-41 22,-87 8,-140 -39,50 -87,81 -97,94z"/>
+      <circle class="fil0" transform="matrix(0.370345 -0.0489603 0.0489603 0.370345 137.611 31.5099)" r="84"/>
+    </g>
+  </g>
+</svg>

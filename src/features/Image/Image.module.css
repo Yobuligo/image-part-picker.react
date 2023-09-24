@@ -3,11 +3,6 @@
   display: inline-block;
 }
 
-.image img {
-  width: 100%;
-  height: auto;
-}
-
 .imageComponent {
   position: absolute;
   top: 0;

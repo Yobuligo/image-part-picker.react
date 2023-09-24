@@ -16,7 +16,11 @@ export function ImagePartPicker<T extends EnumType>(
         grid: useGrid(props.gridWidth, props.gridHeight, false),
       }}
     >
-      <ImagePartGrid gridConfig={props.gridConfig} onSelect={props.onSelect} />
+      <ImagePartGrid
+        gridConfig={props.gridConfig}
+        image={props.image}
+        onSelect={props.onSelect}
+      />
     </ImagePartPickerContext.Provider>
   );
 }

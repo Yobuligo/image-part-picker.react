@@ -1,13 +1,12 @@
 import { useContext, useMemo } from "react";
-import image from "../../assets/person.png";
-import { IImagePartGridProps } from "./IImagePartGridProps";
-import styles from "./ImagePartGrid.module.css";
 import { ImagePartPickerContext } from "../../context/ImagePartPickerContext";
-import { Column } from "../column/Column";
 import { EnumType } from "../../types/EnumType";
 import { ICoordinate } from "../../types/ICoordinate";
 import { CoordinateTracker } from "../../utils/coordinateTracker/CoordinateTracker";
 import { repeat } from "../../utils/repeat";
+import { Column } from "../column/Column";
+import { IImagePartGridProps } from "./IImagePartGridProps";
+import styles from "./ImagePartGrid.module.css";
 
 export function ImagePartGrid<T extends EnumType>(
   props: IImagePartGridProps<T>
@@ -30,7 +29,7 @@ export function ImagePartGrid<T extends EnumType>(
   return (
     <div className={styles.imageFrame}>
       <div className={styles.image}>
-        <img src={image} alt="Person" />
+        {props.image}
         <div className={styles.imageComponent}>{items()}</div>
       </div>
     </div>
