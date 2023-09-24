@@ -1,1 +1,1 @@
-export type EnumType = any;
+export type EnumType = { [name: string]: any };
